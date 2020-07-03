@@ -3,6 +3,11 @@ package com.wangxile.spring.framework.context;
 import com.wangxile.spring.framework.annotation.WQAutowired;
 import com.wangxile.spring.framework.annotation.WQController;
 import com.wangxile.spring.framework.annotation.WQService;
+import com.wangxile.spring.framework.aop.WQAopConfig;
+import com.wangxile.spring.framework.aop.WQAopProxy;
+import com.wangxile.spring.framework.aop.WQCglibAopProxy;
+import com.wangxile.spring.framework.aop.WQJdkDynamicAopProxy;
+import com.wangxile.spring.framework.aop.support.WQAdviceSupport;
 import com.wangxile.spring.framework.beans.WQBeanWrapper;
 import com.wangxile.spring.framework.beans.config.WQBeanDefinition;
 import com.wangxile.spring.framework.beans.config.WQBeanPostProcessor;
@@ -140,6 +145,15 @@ public class WQApplicationContext extends WQDefaultlistableBeanFactory {
             } else {
                 Class<?> clazz = Class.forName(className);
                 instance = clazz.newInstance();
+
+                //AOP生效，读取配置文件
+                WQAdviceSupport adviceSupport = instantionAopConfig(beanDefinition);
+                adviceSupport.setTarget(instance);
+                adviceSupport.setTargetClass(clazz);
+                if (adviceSupport.pointCutMatch()) {
+                    //判断当前bean满足切面规则
+                    instance = createProxy(adviceSupport).getProxy();
+                }
                 this.factoryBeanObjectMap.put(beanDefinition.getBeanName(), instance);
             }
             return instance;
@@ -193,4 +207,34 @@ public class WQApplicationContext extends WQDefaultlistableBeanFactory {
         return reader.getConfig();
     }
 
+    /**
+     * 读取配置文件，初始化AOP配置
+     *
+     * @param beanDefinition
+     * @return
+     */
+    private WQAdviceSupport instantionAopConfig(WQBeanDefinition beanDefinition) {
+        WQAopConfig config = new WQAopConfig();
+        config.setPointCut(reader.getConfig().getProperty("pointCut"));
+        config.setAspectClass(reader.getConfig().getProperty("aspectClass"));
+        config.setAspectBefore(reader.getConfig().getProperty("aspectBefore"));
+        config.setAspectAfter(reader.getConfig().getProperty("aspectAfter"));
+        config.setAspectAfterThrow(reader.getConfig().getProperty("aspectAfterThrow"));
+        config.setAspectAfterThrowingName(reader.getConfig().getProperty("aspectAfterThrowingName"));
+        return new WQAdviceSupport(config);
+    }
+
+    /**
+     * 生成AOP代理对象
+     *
+     * @param adviceSupport
+     * @return
+     */
+    private WQAopProxy createProxy(WQAdviceSupport adviceSupport) {
+        Class targetClass = adviceSupport.getTargetClass();
+        if (targetClass.getInterfaces().length > 0) {
+            return new WQJdkDynamicAopProxy(adviceSupport);
+        }
+        return new WQCglibAopProxy(adviceSupport);
+    }
 }
