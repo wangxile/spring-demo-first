@@ -1,8 +1,5 @@
 package com.wangxile.spring.framework.jdbc;
 
-import com.wangxile.spring.framework.annotation.Column;
-import com.wangxile.spring.framework.annotation.Table;
-
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +14,7 @@ import java.util.*;
  * <p>
  * 通过反射和注解编写，通用select demo
  */
-public class demo {
+public class Demo {
 
     public static void main(String[] args) {
         Member condition = new Member();
