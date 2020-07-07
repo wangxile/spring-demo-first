@@ -6,12 +6,6 @@ import com.wangxile.spring.framework.mybatis.mapping.MappedStatement;
 import java.util.List;
 
 
-/**
- * Executor.java
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public interface Executor {
 
     /**

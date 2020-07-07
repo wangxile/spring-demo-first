@@ -5,12 +5,6 @@ import java.sql.ResultSet;
 import java.util.List;
 
 
-/**
- * ResultSetHandler.java
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public interface ResultSetHandler {
 
     /**

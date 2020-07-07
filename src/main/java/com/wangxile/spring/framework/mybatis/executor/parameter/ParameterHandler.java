@@ -4,12 +4,6 @@ package com.wangxile.spring.framework.mybatis.executor.parameter;
 import java.sql.PreparedStatement;
 
 
-/**
- * ParameterHandler.java
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public interface ParameterHandler {
 
     /**

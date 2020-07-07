@@ -6,13 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-/**
- * StatementHandler.java
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public interface StatementHandler {
 
     /**

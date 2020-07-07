@@ -4,12 +4,6 @@ package com.wangxile.spring.framework.mybatis.session;
 import java.util.List;
 
 
-/**
- * SqlSession.java
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public interface SqlSession {
 
     /**

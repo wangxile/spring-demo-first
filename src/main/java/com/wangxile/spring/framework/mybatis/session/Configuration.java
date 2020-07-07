@@ -9,13 +9,6 @@ import java.util.Map;
 import java.util.Properties;
 
 
-/**
- * mybatis核心配置类
- *
- * @author PLF
- * @version 1.0
- * @date 2019年3月7日
- */
 public class Configuration {
     /**
      * 配置项

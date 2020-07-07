@@ -4,12 +4,6 @@ package com.wangxile.spring.framework.mybatis.executor.parameter;
 import java.sql.PreparedStatement;
 
 
-/**
- * DefaultParameterHandler.java
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public class DefaultParameterHandler implements ParameterHandler {
 
     private Object parameter;

@@ -8,13 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * DefaultResultSetHandler.java
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public class DefaultResultSetHandler implements ResultSetHandler {
 
     private final MappedStatement mappedStatement;

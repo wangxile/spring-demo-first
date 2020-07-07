@@ -14,13 +14,6 @@ import com.wangxile.spring.framework.mybatis.session.Configuration;
 import java.sql.*;
 import java.util.List;
 
-
-/**
- * mybatis执行器
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public class SimpleExecutor implements Executor {
     /**
      * 数据库连接

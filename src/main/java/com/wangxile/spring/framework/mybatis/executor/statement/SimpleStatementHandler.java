@@ -12,12 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-/**
- * Statement处理类
- *
- * @author PLF
- * @date 2019年3月6日
- */
 public class SimpleStatementHandler implements StatementHandler {
     /**
      * #{}正则匹配
